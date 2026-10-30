@@ -15,8 +15,8 @@ def check_line(line, line_num, filepath, module):
     clean_line = line.rstrip('\n')
     
     # 1. Reglas de Estilo y Legibilidad
-    if len(clean_line) > 80:
-        errors.append(f"Línea {line_num}: Excede los 80 caracteres (tiene {len(clean_line)}).")
+    if len(clean_line) > 100:
+        errors.append(f"Línea {line_num}: Excede los 100 caracteres (tiene {len(clean_line)}).")
     
     if '\t' in line:
         errors.append(f"Línea {line_num}: Uso de tabulaciones detectado. Usa 2 espacios.")
