@@ -43,21 +43,21 @@ def check_file(filepath, module):
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             lines = f.readlines()
-            
+
             for i, line in enumerate(lines):
                 line_errors = check_line(line, i + 1, filepath, module)
                 errors.extend(line_errors)
-                
+
             # Extra: Comprobar Header Guards en .hpp
             if filepath.endswith('.hpp'):
                 content = "".join(lines)
                 filename_upper = os.path.basename(filepath).replace('.', '_').upper()
-                if not re.search(r'#ifndef', content) or not re.search(r'#define', content):
+                if not re.search(r'#\s*ifndef', content) or not re.search(r'#\s*define', content):
                     errors.append("Faltan los Header Guards (#ifndef, #define).")
-                    
+
     except Exception as e:
         return [f"Error al leer el archivo: {str(e)}"]
-        
+
     return errors
 
 def get_files_to_check(paths):
